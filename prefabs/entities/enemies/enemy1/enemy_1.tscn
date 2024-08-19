@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://qjg07l3ecej7"]
+
+[ext_resource type="Script" path="res://prefabs/entities/enemies/enemy1/enemy_1.gd" id="1_8l3b2"]
+[ext_resource type="Material" uid="uid://bfs14y02ke03n" path="res://assets/materials/enemy1.tres" id="1_yojio"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ccv5m"]
+material = ExtResource("1_yojio")
+radius = 0.2
+height = 1.75
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sklft"]
+radius = 0.2
+height = 1.7
+
+[sub_resource type="BoxMesh" id="BoxMesh_ucqc0"]
+size = Vector3(0.3, 0.3, 0.1)
+
+[node name="Enemy1" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.896597, 0)
+script = ExtResource("1_8l3b2")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_ccv5m")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_sklft")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+debug_enabled = true
+
+[node name="FaceMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.598233, -0.1523)
+mesh = SubResource("BoxMesh_ucqc0")

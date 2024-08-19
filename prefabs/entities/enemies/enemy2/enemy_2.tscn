@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dscry0kosmfus"]
+
+[ext_resource type="Script" path="res://prefabs/entities/enemies/enemy2/enemy_2.gd" id="1_nkhfi"]
+[ext_resource type="Material" uid="uid://cn16xq3atk0k3" path="res://assets/materials/enemy2.tres" id="2_s1wfy"]
+[ext_resource type="Script" path="res://ai/movement/seek.gd" id="3_qlq4u"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_6q8r7"]
+material = ExtResource("2_s1wfy")
+radius = 0.2
+height = 1.75
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_dwnew"]
+radius = 0.2
+height = 1.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_48y77"]
+size = Vector3(0.3, 0.3, 0.1)
+
+[node name="Enemy2" type="CharacterBody3D"]
+script = ExtResource("1_nkhfi")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_6q8r7")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_dwnew")
+
+[node name="FaceMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.487979, -0.198769)
+mesh = SubResource("BoxMesh_48y77")
+
+[node name="Seek" type="Node" parent="."]
+script = ExtResource("3_qlq4u")
