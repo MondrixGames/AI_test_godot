@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://nxbu54ucsusq"]
+[gd_scene load_steps=11 format=3 uid="uid://nxbu54ucsusq"]
 
 [ext_resource type="PackedScene" uid="uid://cm1bpcejy47oy" path="res://prefabs/rooms_pref/room_1.tscn" id="1_rfu1h"]
 [ext_resource type="PackedScene" uid="uid://82wo0kjiw5s7" path="res://prefabs/entities/player/player.tscn" id="2_p7nq3"]
 [ext_resource type="PackedScene" uid="uid://qjg07l3ecej7" path="res://prefabs/entities/enemies/enemy1/enemy_1.tscn" id="3_p0nsx"]
-[ext_resource type="PackedScene" uid="uid://duaxg7gklu7iy" path="res://prefabs/helpers/cover.tscn" id="4_l8220"]
+[ext_resource type="PackedScene" uid="uid://duaxg7gklu7iy" path="res://prefabs/helpers/cover/cover.tscn" id="4_l8220"]
 [ext_resource type="PackedScene" uid="uid://bpqm0f1212vv1" path="res://prefabs/entities/enemies/enemy3/enemy_3.tscn" id="5_8yjjh"]
+[ext_resource type="PackedScene" uid="uid://c0s4qk0nq41a" path="res://prefabs/helpers/weapon/weapon.tscn" id="6_4t4vw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_rsx25"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -70,3 +71,9 @@ offset_bottom = 200.0
 
 [node name="TextEdit" type="TextEdit" parent="HUD/ConsoleContainer" groups=["console"]]
 layout_mode = 2
+
+[node name="Weapon" parent="." instance=ExtResource("6_4t4vw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93793, 0.0970361, -15.2825)
+
+[node name="Weapon2" parent="." instance=ExtResource("6_4t4vw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2741, 0.0877836, 4.99155)

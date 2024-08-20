@@ -16,7 +16,9 @@ var _action_planner =  GoapActionPlanner.new()
 func _ready():
 	_action_planner.set_actions([
 		PursuePlayerAction.new(),
-		MoveToCoverAction.new()
+		MoveToCoverAction.new(),
+		GrabWeaponAction.new(),
+		ShootPlayerAction.new()
 	])
 
 

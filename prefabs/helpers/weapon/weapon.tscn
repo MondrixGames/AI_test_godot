@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://c0s4qk0nq41a"]
+
+[ext_resource type="Script" path="res://prefabs/helpers/weapon/weapon.gd" id="1_157kj"]
+[ext_resource type="Material" uid="uid://b6370htyyroqr" path="res://assets/materials/weapon.tres" id="1_gw4to"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ner7u"]
+material = ExtResource("1_gw4to")
+size = Vector3(0.2, 0.2, 1)
+
+[node name="Weapon" type="Node3D" groups=["weapon"]]
+script = ExtResource("1_157kj")
+
+[node name="WeaponMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ner7u")

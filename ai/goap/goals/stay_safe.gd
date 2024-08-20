@@ -10,7 +10,7 @@ func is_valid() -> bool:
 
 
 func priority() -> int:
-	return 2
+	return 1
 
 
 func get_desired_state() -> Dictionary:

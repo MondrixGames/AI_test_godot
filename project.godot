@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="BTTest1"
+config/name="AI_test_godot"
 run/main_scene="res://scenes/main_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
-run/max_fps=30
+run/max_fps=60
 config/icon="res://icon.svg"
 
 [autoload]
@@ -37,12 +37,6 @@ enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 folder_colors={
 "res://prefabs/entities/player/": "red"
 }
-
-[global_group]
-
-player="Group for player entitites"
-cover=""
-console=""
 
 [input]
 

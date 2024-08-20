@@ -17,6 +17,7 @@ size = Vector3(0.3, 0.3, 0.1)
 
 [node name="Enemy3" type="CharacterBody3D"]
 script = ExtResource("1_y4cd5")
+movement_speed = 4.0
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_kbw5b")
@@ -29,7 +30,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.464008, -0.214771)
 mesh = SubResource("BoxMesh_lvfmy")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 2.0
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0.901729, 0.000702324, 0.910065, 1)
+
+[node name="WeaponRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551152, 0)
+target_position = Vector3(0, 0, -5)
