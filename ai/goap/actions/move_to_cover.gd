@@ -5,19 +5,19 @@ class_name MoveToCoverAction
 func get_clazz(): return "MoveToCoverAction"
 
 
-func is_valid() -> bool:
-	return WorldState.get_elements("cover").size() >= 1 and WorldState.get_state("isThreatened", true)
+func is_valid(actor) -> bool:
+	return WorldState.get_elements("cover").size() >= 1 and actor.get_state("isThreatened", true)
 
 
-func get_cost(blackboard) -> int:
+func get_cost(_blackboard) -> int:
 	return 1
 
 
-func get_preconditions() -> Dictionary:
+func get_preconditions(_actor) -> Dictionary:
 	return {}
 
 
-func get_effects() -> Dictionary:
+func get_effects(_actor) -> Dictionary:
 	return {
 		"isThreatened": false
 	}
@@ -29,7 +29,7 @@ func perform(actor, delta) -> bool:
 	if _cover:
 		if _cover.position.distance_to(actor.position) < 1:
 			if actor.is_chill():
-				WorldState.set_state("isThreatened", false)
+				actor.set_state("isThreatened", false)
 				return true
 			return false
 		else:

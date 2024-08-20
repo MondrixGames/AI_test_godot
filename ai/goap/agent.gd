@@ -32,15 +32,25 @@ func _process(delta):
 			"position": _actor.position,
 			}
 
-		for s in WorldState._state:
-			blackboard[s] = WorldState._state[s]
+		#for s in WorldState._state:
+			#blackboard[s] = WorldState._state[s]
+		for s in _actor._state:
+			blackboard[s] = _actor._state[s]
 
 		_current_goal = goal
-		_current_plan = Goap.get_action_planner().get_plan(_current_goal, blackboard)
+		_current_plan = Goap.get_action_planner().get_plan(_actor, _current_goal, blackboard)
 		_current_plan_step = 0
 	else:
 		_follow_plan(_current_plan, delta)
 
+func request_new_plan():
+	var blackboard = {
+		"position": _actor.position,
+	}
+	for s in _actor._state:
+		blackboard[s] = _actor._state[s]
+	_current_plan = Goap.get_action_planner().get_plan(_actor, _current_goal, blackboard)
+	_current_plan_step = 0
 
 func init(actor, goals: Array):
 	_actor = actor
@@ -51,10 +61,10 @@ func init(actor, goals: Array):
 # Returns the highest priority goal available.
 #
 func _get_best_goal():
-	var highest_priority
+	var highest_priority = null
 
 	for goal in _goals:
-		if goal.is_valid() and (highest_priority == null or goal.priority() > highest_priority.priority()):
+		if goal.is_valid(_actor) and (highest_priority == null or goal.priority(_actor) > highest_priority.priority(_actor)):
 			highest_priority = goal
 
 	return highest_priority

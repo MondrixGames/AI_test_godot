@@ -20,19 +20,19 @@ func set_actions(actions: Array):
 # Receives a Goal and an optional blackboard.
 # Returns a list of actions to be executed.
 #
-func get_plan(goal: GoapGoal, blackboard = {}) -> Array:
+func get_plan(_actor, goal: GoapGoal, blackboard = {}) -> Array:
 	print("Goal: %s" % goal.get_clazz())
 	WorldState.console_message("Goal: %s" % goal.get_clazz())
-	var desired_state = goal.get_desired_state().duplicate()
+	var desired_state = goal.get_desired_state(_actor).duplicate()
 
 	if desired_state.is_empty():
 		return []
 
-	return _find_best_plan(goal, desired_state, blackboard)
+	return _find_best_plan(_actor, goal, desired_state, blackboard)
 
 
 
-func _find_best_plan(goal, desired_state, blackboard):
+func _find_best_plan(actor, goal, desired_state, blackboard):
   # goal is set as root action. It does feel weird
   # but the code is simpler this way.
 	var root = {
@@ -43,7 +43,7 @@ func _find_best_plan(goal, desired_state, blackboard):
 
   # build plans will populate root with children.
   # In case it doesn't find a valid path, it will return false.
-	if _build_plans(root, blackboard.duplicate()):
+	if _build_plans(actor, root, blackboard.duplicate()):
 		var plans = _transform_tree_into_array(root, blackboard)
 		return _get_cheapest_plan(plans)
 
@@ -55,7 +55,7 @@ func _find_best_plan(goal, desired_state, blackboard):
 # actions included in the cheapest one.
 #
 func _get_cheapest_plan(plans):
-	var best_plan
+	var best_plan = null
 	for p in plans:
 		_print_plan(p)
 		if best_plan == null or p.cost < best_plan.cost:
@@ -78,7 +78,7 @@ func _get_cheapest_plan(plans):
 # Be aware that for simplicity, the current implementation is not protected from
 # circular dependencies. This is easy to implement though.
 #
-func _build_plans(step, blackboard):
+func _build_plans(actor, step, blackboard):
 	var has_followup = false
 
   # each node in the graph has it's own desired state.
@@ -96,11 +96,11 @@ func _build_plans(step, blackboard):
 		return true
 
 	for action in _actions:
-		if not action.is_valid():
+		if not action.is_valid(actor):
 			continue
 
 		var should_use_action = false
-		var effects = action.get_effects()
+		var effects = action.get_effects(actor)
 		var desired_state = state.duplicate()
 
 	# check if action should be used, i.e. it
@@ -113,7 +113,7 @@ func _build_plans(step, blackboard):
 
 		if should_use_action:
 			# adds actions pre-conditions to the desired state
-			var preconditions = action.get_preconditions()
+			var preconditions = action.get_preconditions(actor)
 			for p in preconditions:
 				desired_state[p] = preconditions[p]
 
@@ -128,7 +128,7 @@ func _build_plans(step, blackboard):
 			# if it's not empty, _build_plans is called again (recursively) so
 			# it can try to find actions to satisfy this current state. In case
 			# it can't find anything, this action won't be included in the graph.
-			if desired_state.is_empty() or _build_plans(s, blackboard.duplicate()):
+			if desired_state.is_empty() or _build_plans(actor, s, blackboard.duplicate()):
 				step.children.push_back(s)
 				has_followup = true
 

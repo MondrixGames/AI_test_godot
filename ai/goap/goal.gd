@@ -12,14 +12,14 @@ class_name GoapGoal
 # not even consider the goal. i.e. Ignore combat related goals
 # when there are not enemies nearby.
 #
-func is_valid() -> bool:
+func is_valid(_actor) -> bool:
 	return true
 
 #
 # Returns goals priority. This priority can be dynamic. Check
 # `./goals/keep_fed.gd` for an example of dynamic priority.
 #
-func priority() -> int:
+func priority(_actor) -> int:
 	return 1
 
 #
@@ -28,5 +28,5 @@ func priority() -> int:
 #
 # For example, in your world state you may store "hunger" as a number, but inside your
 # goap you can deal with it as "is_hungry".
-func get_desired_state() -> Dictionary:
+func get_desired_state(_actor) -> Dictionary:
 	return {}

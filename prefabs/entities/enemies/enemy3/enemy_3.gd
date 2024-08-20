@@ -6,6 +6,17 @@ var movement_target_position: Vector3
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var weapon_ray_cast: RayCast3D = $WeaponRayCast
 
+var _state = {}
+
+func get_state(state_name, default = null):
+	return _state.get(state_name, default)
+
+func set_state(state_name, value):
+	_state[state_name] = value
+
+func clear_state():
+	_state = {}
+
 
 func _ready():
   # Here is where I define which goals are available for this
@@ -54,7 +65,7 @@ func is_chill() -> bool:
 	body_mesh.get_active_material(0).albedo_color = "ff5600"
 	return true
 
-func move_to(target_position, delta) -> void:
+func move_to(target_position, _delta):
 	set_movement_target(target_position)
 	if navigation_agent.is_navigation_finished():
 		return

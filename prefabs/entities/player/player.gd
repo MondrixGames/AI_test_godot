@@ -27,7 +27,6 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	WorldState.set_state("playerIsAlive", true)
 
 func _input(event):
 	if event is InputEventMouseMotion:
@@ -36,10 +35,10 @@ func _input(event):
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-89), deg_to_rad(89))
 	if event.is_action_pressed("quit_game"):
 		get_tree().quit()
-	if event.is_action_pressed("shoot"):
-		WorldState.set_state("isThreatened", true)
-	if event.is_action_pressed("revive"):
-		WorldState.set_state("playerIsAlive", true)
+	#if event.is_action_pressed("shoot"):
+		#WorldState.set_state("isThreatened", true)
+	#if event.is_action_pressed("revive"):
+		#WorldState.set_state("playerIsAlive", true)
 
 
 func _physics_process(delta: float) -> void:

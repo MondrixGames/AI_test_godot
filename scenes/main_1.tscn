@@ -60,9 +60,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8598, 0.569527, -11.4506)
 [node name="Cover3" parent="." instance=ExtResource("4_l8220")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4829, 0.869133, 14.3649)
 
-[node name="Enemy3" parent="." instance=ExtResource("5_8yjjh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.69423, 0.922869, -2.53821)
-
 [node name="HUD" type="CanvasLayer" parent="."]
 
 [node name="ConsoleContainer" type="MarginContainer" parent="HUD"]
@@ -72,8 +69,11 @@ offset_bottom = 200.0
 [node name="TextEdit" type="TextEdit" parent="HUD/ConsoleContainer" groups=["console"]]
 layout_mode = 2
 
-[node name="Weapon" parent="." instance=ExtResource("6_4t4vw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.93793, 0.0970361, -15.2825)
-
 [node name="Weapon2" parent="." instance=ExtResource("6_4t4vw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.2741, 0.0877836, 4.99155)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.930888, 0.0877836, -15.4864)
+
+[node name="Enemy3" parent="." instance=ExtResource("5_8yjjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.21119, 0.921364, -21.0964)
+
+[node name="Enemy4" parent="." instance=ExtResource("5_8yjjh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.22215, 0.946442, -12.7058)

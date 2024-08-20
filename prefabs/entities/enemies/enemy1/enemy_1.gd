@@ -28,7 +28,7 @@ func actor_setup():
 func set_movement_target(movement_target: Vector3):
 	navigation_agent.set_target_position(movement_target)
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	movement_target_position = first_player.position
 	actor_setup()
 	if navigation_agent.is_navigation_finished():

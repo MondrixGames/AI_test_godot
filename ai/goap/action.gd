@@ -13,7 +13,7 @@ class_name GoapAction
 # also be used during execution to abort the plan in case the world state
 # does not allow this action anymore.
 #
-func is_valid() -> bool:
+func is_valid(_actor) -> bool:
 	return true
 
 
@@ -33,7 +33,7 @@ func get_cost(_blackboard) -> int:
 #   "has_wood": true
 # }
 #
-func get_preconditions() -> Dictionary:
+func get_preconditions(_actor) -> Dictionary:
 	return {}
 
 
@@ -44,7 +44,7 @@ func get_preconditions() -> Dictionary:
 # {
 #   "has_wood": true
 # }
-func get_effects() -> Dictionary:
+func get_effects(_actor) -> Dictionary:
 	return {}
 
 
@@ -64,3 +64,12 @@ func get_effects() -> Dictionary:
 #
 func perform(_actor, _delta) -> bool:
 	return false
+
+# Si hay alguna acción que no se puede realizar en ningún momento, esta función
+# pide un nuevo plan al Goap.get_action_planner().get_plan()
+
+func request_new_plan_to_agent(actor):
+	for child in actor.get_children():
+		if child is GoapAgent:
+			child.request_new_plan()
+	return null

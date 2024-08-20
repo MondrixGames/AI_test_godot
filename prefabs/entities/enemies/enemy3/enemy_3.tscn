@@ -17,7 +17,7 @@ size = Vector3(0.3, 0.3, 0.1)
 
 [node name="Enemy3" type="CharacterBody3D"]
 script = ExtResource("1_y4cd5")
-movement_speed = 4.0
+movement_speed = 1.0
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("CapsuleMesh_kbw5b")
