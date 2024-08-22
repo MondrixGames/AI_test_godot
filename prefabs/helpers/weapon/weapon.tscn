@@ -8,6 +8,7 @@ material = ExtResource("1_gw4to")
 size = Vector3(0.2, 0.2, 1)
 
 [node name="Weapon" type="Node3D" groups=["weapon"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 script = ExtResource("1_157kj")
 
 [node name="WeaponMesh" type="MeshInstance3D" parent="."]

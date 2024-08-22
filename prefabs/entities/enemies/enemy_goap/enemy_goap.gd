@@ -5,6 +5,9 @@ var movement_target_position: Vector3
 @onready var body_mesh: MeshInstance3D = $BodyMesh
 @onready var navigation_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var weapon_ray_cast: RayCast3D = $WeaponRayCast
+@onready var name_tag: Label3D = $NameTag
+@onready var goal_tag: Label3D = $GoalTag
+
 
 var _state = {}
 
@@ -19,6 +22,7 @@ func clear_state():
 
 
 func _ready():
+	navigation_agent.velocity_computed.connect(Callable(_on_velocity_computed))
   # Here is where I define which goals are available for this
   # npc. In this implementation, goals priority are calculated
   # dynamically. Depending on your use case you might want to
@@ -28,12 +32,15 @@ func _ready():
 	agent.init(self, [
 		PlayerIsDeadGoal.new(),
 		StaySafeGoal.new(),
-		RelaxGoal.new()
+		RelaxGoal.new(),
+		GrabWeaponGoal.new(),
 	])
 	
 	add_child(agent)
 	
 	call_deferred("actor_setup")
+	
+	name_tag.text = self.name
 
 func actor_setup():
 	# Wait for the first physics frame so the NavigationServer can sync.
@@ -61,16 +68,26 @@ func kill_player() -> bool:
 	body_mesh.get_active_material(0).albedo_color = "ff58ff"
 	return true
 
-func is_chill() -> bool:
+func is_chill(cover) -> bool:
+	cover.remove_from_group("cover")
 	body_mesh.get_active_material(0).albedo_color = "ff5600"
 	return true
 
 func move_to(target_position, _delta):
 	set_movement_target(target_position)
 	if navigation_agent.is_navigation_finished():
+		velocity = Vector3.ZERO
+		move_and_slide()
 		return
-	var current_agent_position: Vector3 = global_position
 	var next_path_position: Vector3 = navigation_agent.get_next_path_position()
 
-	velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+	var new_velocity: Vector3 = global_position.direction_to(next_path_position) * movement_speed
+	if navigation_agent.avoidance_enabled:
+		navigation_agent.set_velocity(new_velocity)
+	else:
+		_on_velocity_computed(new_velocity)
+
+
+func _on_velocity_computed(safe_velocity: Vector3):
+	velocity = safe_velocity
 	move_and_slide()

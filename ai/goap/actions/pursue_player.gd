@@ -5,8 +5,8 @@ class_name PursuePlayerAction
 func get_clazz(): return "PursuePlayerAction"
 
 
-func is_valid(_actor) -> bool:
-	return WorldState.get_elements("player").size() >= 1
+func is_valid(actor) -> bool:
+	return WorldState.get_elements("player").size() >= 1 and actor.get_state("playerIsAlive", true)
 
 
 func get_cost(blackboard) -> int:

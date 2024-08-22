@@ -21,8 +21,8 @@ func set_actions(actions: Array):
 # Returns a list of actions to be executed.
 #
 func get_plan(_actor, goal: GoapGoal, blackboard = {}) -> Array:
-	print("Goal: %s" % goal.get_clazz())
-	WorldState.console_message("Goal: %s" % goal.get_clazz())
+	print("Goal: %s, Priority: %d" % [goal.get_clazz(), goal.priority(_actor)])
+	WorldState.console_message("Goal: %s, Priority: %d" % [goal.get_clazz(), goal.priority(_actor)])
 	var desired_state = goal.get_desired_state(_actor).duplicate()
 
 	if desired_state.is_empty():

@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://bpqm0f1212vv1"]
 
-[ext_resource type="Material" uid="uid://bsvj387t1dxi8" path="res://assets/materials/enemy3.tres" id="1_wkdmb"]
-[ext_resource type="Script" path="res://prefabs/entities/enemies/enemy3/enemy_3.gd" id="1_y4cd5"]
+[ext_resource type="Script" path="res://prefabs/entities/enemies/enemy_goap/enemy_goap.gd" id="1_sq4wk"]
+[ext_resource type="Material" uid="uid://bsvj387t1dxi8" path="res://assets/materials/enemy3.tres" id="2_ot1rc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_kbw5b"]
-material = ExtResource("1_wkdmb")
+material = ExtResource("2_ot1rc")
 radius = 0.2
 height = 1.75
 
@@ -15,8 +15,9 @@ height = 1.75
 [sub_resource type="BoxMesh" id="BoxMesh_lvfmy"]
 size = Vector3(0.3, 0.3, 0.1)
 
-[node name="Enemy3" type="CharacterBody3D"]
-script = ExtResource("1_y4cd5")
+[node name="EnemyGoap" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+script = ExtResource("1_sq4wk")
 movement_speed = 1.0
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
@@ -30,6 +31,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.464008, -0.214771)
 mesh = SubResource("BoxMesh_lvfmy")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+max_neighbors = 8
 debug_enabled = true
 debug_use_custom = true
 debug_path_custom_color = Color(0.901729, 0.000702324, 0.910065, 1)
@@ -37,3 +40,13 @@ debug_path_custom_color = Color(0.901729, 0.000702324, 0.910065, 1)
 [node name="WeaponRayCast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551152, 0)
 target_position = Vector3(0, 0, -5)
+
+[node name="NameTag" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27717, 0)
+billboard = 1
+text = "name"
+
+[node name="GoalTag" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05909, 0)
+billboard = 1
+text = "goal"

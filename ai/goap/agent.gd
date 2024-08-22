@@ -36,7 +36,9 @@ func _process(delta):
 			#blackboard[s] = WorldState._state[s]
 		for s in _actor._state:
 			blackboard[s] = _actor._state[s]
-
+		_actor.goal_tag.text = str(goal.get_clazz())
+		print("Actor: %s" % _actor.name)
+		WorldState.console_message("Actor: %s" % _actor.name)
 		_current_goal = goal
 		_current_plan = Goap.get_action_planner().get_plan(_actor, _current_goal, blackboard)
 		_current_plan_step = 0
