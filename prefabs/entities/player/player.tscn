@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://82wo0kjiw5s7"]
+[gd_scene load_steps=5 format=3 uid="uid://82wo0kjiw5s7"]
 
 [ext_resource type="Script" path="res://prefabs/entities/player/player.gd" id="1_fxmty"]
 
@@ -10,7 +10,12 @@ height = 1.75
 radius = 0.2
 height = 1.75
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tgltm"]
+radius = 0.25
+height = 1.8
+
 [node name="Player" type="CharacterBody3D" groups=["player"]]
+collision_layer = 513
 script = ExtResource("1_fxmty")
 
 [node name="BodyMesh" type="MeshInstance3D" parent="."]
@@ -23,3 +28,14 @@ shape = SubResource("CapsuleShape3D_g2thc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.597304, 0)
 
 [node name="PlayerCamera" type="Camera3D" parent="head"]
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="."]
+radius = 0.2
+
+[node name="FarSightDetection" type="Area3D" parent="."]
+collision_layer = 1536
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FarSightDetection"]
+shape = SubResource("CapsuleShape3D_tgltm")

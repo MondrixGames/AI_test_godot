@@ -53,61 +53,73 @@ data = PackedVector3Array(2, 0.2, 0, 0, 0.2, 2, 0, 0.2, 0, 2, 0.2, 0, 2, 0.2, 2,
 [node name="room1" instance=ExtResource("1_i5iaq")]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_a6uqo")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_001" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_001/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_lln04")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_002" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_002/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_0o3bd")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_003" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_003/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_hpjp7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_004" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_004/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_fp7e2")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_005" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_005/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_4rky3")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_006" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_006/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_ilxi0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_007" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_007/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_a0vi7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_008" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_008/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_0vhof")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="corneroutskirt_comp_2_15x2_25x4_009" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="corneroutskirt_comp_2_15x2_25x4_009/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_c35ot")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="doorway_comp_2x0_4x4" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorway_comp_2x0_4x4/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_pq1vl")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="doorway_comp_2x0_4x4_001" index="0"]
+collision_layer = 1025
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="doorway_comp_2x0_4x4_001/StaticBody3D" index="0"]
 shape = SubResource("ConcavePolygonShape3D_uiebw")

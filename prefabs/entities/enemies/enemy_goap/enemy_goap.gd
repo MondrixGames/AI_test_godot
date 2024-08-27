@@ -34,7 +34,7 @@ func _ready():
 		StaySafeGoal.new(),
 		RelaxGoal.new(),
 		GrabWeaponGoal.new(),
-	])
+	], 0.1)
 	
 	add_child(agent)
 	
@@ -61,17 +61,34 @@ func shoot_player(player) -> bool:
 	if weapon_ray_cast.is_colliding():
 		var collider = weapon_ray_cast.get_collider()
 		if collider.is_in_group("player"):
+			var material_instance = body_mesh.get_active_material(0).duplicate()
+			body_mesh.set_surface_override_material(0, material_instance)
+			# Change the color of the material for this specific node
+			material_instance.albedo_color = Color("ff58ff")
 			return true
 	return false
 
 func kill_player() -> bool:
-	body_mesh.get_active_material(0).albedo_color = "ff58ff"
+	# Ensure the node has its own unique material instance
+	var material_instance = body_mesh.get_active_material(0).duplicate()
+	body_mesh.set_surface_override_material(0, material_instance)
+	# Change the color of the material for this specific node
+	material_instance.albedo_color = Color("ff58ff")
 	return true
 
+
 func is_chill(cover) -> bool:
+	# Remove the node from the "cover" group
 	cover.remove_from_group("cover")
-	body_mesh.get_active_material(0).albedo_color = "ff5600"
+
+	# Ensure the node has its own unique material instance
+	var material_instance = body_mesh.get_active_material(0).duplicate()
+	body_mesh.set_surface_override_material(0, material_instance)
+
+	# Change the color of the material for this specific node
+	material_instance.albedo_color = Color("ff5600")
 	return true
+
 
 func move_to(target_position, _delta):
 	set_movement_target(target_position)

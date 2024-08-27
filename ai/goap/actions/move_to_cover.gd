@@ -27,8 +27,8 @@ func perform(actor, delta) -> bool:
 	var _cover = WorldState.get_closest_element("cover", actor)
 
 	if _cover:
-		if _cover.position.distance_to(actor.position) < 1:
-			if actor.is_chill(_cover):
+		if _cover.position.distance_to(actor.position) < 1.5:
+			if await actor.covering(_cover):
 				actor.set_state("isThreatened", false)
 				return true
 			return false

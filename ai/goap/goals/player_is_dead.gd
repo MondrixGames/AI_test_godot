@@ -12,7 +12,6 @@ func is_valid(actor) -> bool:
 func priority(_actor) -> int:
 	return 2
 
-
 func get_desired_state(_actor) -> Dictionary:
 	return {
 		"playerIsAlive": false

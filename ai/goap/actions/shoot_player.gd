@@ -29,7 +29,7 @@ func perform(actor, delta) -> bool:
 	var _player = WorldState.get_closest_element("player", actor)
 
 	if _player:
-		if _player.position.distance_to(actor.position) < 5:
+		if _player.position.distance_to(actor.position) < 8:
 				if actor.shoot_player(_player):
 					actor.set_state("playerIsAlive", false)
 					actor.set_state("hasWeapon", false)

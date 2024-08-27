@@ -30,8 +30,8 @@ func perform(actor, delta) -> bool:
 	var _player = WorldState.get_closest_element("player", actor)
 
 	if _player:
-		if _player.position.distance_to(actor.position) < 1:
-				if actor.kill_player():
+		if _player.position.distance_to(actor.position) < 1.5:
+				if await actor.kill_player():
 					actor.set_state("playerIsAlive", false)
 					return true
 				return false

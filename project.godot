@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AI_test_godot"
-run/main_scene="res://scenes/main_1.tscn"
+run/main_scene="res://scenes/demo_1.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 run/max_fps=60
 config/icon="res://icon.svg"
@@ -27,10 +27,6 @@ Goap="*res://ai/goap/goap.gd"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/beehave/plugin.cfg")
 
 [file_customization]
 
@@ -95,6 +91,9 @@ revive={
 [layer_names]
 
 3d_physics/layer_1="world"
+3d_physics/layer_5="HurtBox"
+3d_physics/layer_10="FarSight"
+3d_physics/layer_11="BlockSight"
 
 [physics]
 

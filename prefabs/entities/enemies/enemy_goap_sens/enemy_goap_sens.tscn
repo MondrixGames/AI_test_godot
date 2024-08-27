@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://ssnj0sg02865"]
+
+[ext_resource type="Script" path="res://prefabs/entities/enemies/enemy_goap_sens/enemy_goap_sens.gd" id="1_5j3eq"]
+[ext_resource type="Material" uid="uid://c7ovl8n3d1ib6" path="res://assets/materials/enemy_gosp_sens.tres" id="2_3m6s2"]
+[ext_resource type="Script" path="res://prefabs/entities/enemies/enemy_goap_sens/sensor_manager.gd" id="3_pqwrl"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kbw5b"]
+material = ExtResource("2_3m6s2")
+radius = 0.2
+height = 1.75
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7dv64"]
+radius = 0.2
+height = 1.75
+
+[sub_resource type="BoxMesh" id="BoxMesh_lvfmy"]
+size = Vector3(0.63, 0.3, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vo5yt"]
+size = Vector3(13.9384, 1, 14.924)
+
+[node name="EnemyGoapSens" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.875, 0)
+script = ExtResource("1_5j3eq")
+
+[node name="BodyMesh" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_kbw5b")
+
+[node name="BodyCollision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_7dv64")
+
+[node name="FaceMesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.464008, -0.214771)
+mesh = SubResource("BoxMesh_lvfmy")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+avoidance_enabled = true
+max_neighbors = 8
+debug_enabled = true
+debug_use_custom = true
+debug_path_custom_color = Color(0.901729, 0.000702324, 0.910065, 1)
+
+[node name="WeaponRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.551152, 0)
+target_position = Vector3(0, 0, -5)
+
+[node name="NameTag" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.27717, 0)
+billboard = 1
+text = "name"
+
+[node name="GoalTag" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05909, 0)
+billboard = 1
+text = "goal"
+
+[node name="SensorManager" type="Node3D" parent="."]
+script = ExtResource("3_pqwrl")
+
+[node name="FarSightSensor" type="Area3D" parent="SensorManager"]
+collision_layer = 0
+collision_mask = 512
+monitorable = false
+
+[node name="FarSightCollision" type="CollisionShape3D" parent="SensorManager/FarSightSensor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0257788, 0, -6.93969)
+shape = SubResource("BoxShape3D_vo5yt")
+
+[node name="FarSightTimer" type="Timer" parent="SensorManager"]
+autostart = true
+
+[node name="CheckRaycast" type="RayCast3D" parent="SensorManager"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0668662, -0.316236)
+target_position = Vector3(0, 0, -100)
+collision_mask = 1024
+collide_with_areas = true
+debug_shape_custom_color = Color(0.563465, 0.000628299, 0.646356, 1)
+
+[connection signal="timeout" from="SensorManager/FarSightTimer" to="SensorManager" method="_on_far_sight_timer_timeout"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://duaxg7gklu7iy"]
+[gd_scene load_steps=4 format=3 uid="uid://duaxg7gklu7iy"]
 
 [ext_resource type="Material" uid="uid://ba650b72ksej3" path="res://assets/materials/cover.tres" id="1_rrjvh"]
 
@@ -6,8 +6,26 @@
 material = ExtResource("1_rrjvh")
 size = Vector3(1, 2, 1)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_5msas"]
+size = Vector3(1, 2, 1)
+
 [node name="Cover" type="Node3D" groups=["cover"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CoverMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_qd8ts")
+
+[node name="FarSightDetection" type="Area3D" parent="."]
+process_mode = 4
+collision_layer = 512
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FarSightDetection"]
+shape = SubResource("BoxShape3D_5msas")
+
+[node name="NameTag" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.33645, 0)
+billboard = 1
+text = "Cover
+"

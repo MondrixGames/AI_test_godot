@@ -12,3 +12,8 @@ func is_valid(_actor) -> bool:
 # relax has lower priority compared to other goals
 func priority(_actor) -> int:
 	return 0
+
+func get_desired_state(_actor) -> Dictionary:
+	return {
+		"isChill": true
+	}

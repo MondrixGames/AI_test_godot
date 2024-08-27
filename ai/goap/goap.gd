@@ -12,15 +12,25 @@
 extends Node
 
 var _action_planner =  GoapActionPlanner.new()
+var _demo_action_planner = GoapActionPlanner.new()
 
 func _ready():
 	_action_planner.set_actions([
 		PursuePlayerAction.new(),
 		MoveToCoverAction.new(),
 		GrabWeaponAction.new(),
-		ShootPlayerAction.new()
+		ShootPlayerAction.new(),
+		RelaxAction.new(),
+		#CoverToStandAction.new(),
+		#PursuePlayerSensAction.new(),
+	])
+	_demo_action_planner.set_actions([
+		
 	])
 
 
 func get_action_planner() -> GoapActionPlanner:
 	return _action_planner
+
+func get_demo_action_planner() -> GoapActionPlanner:
+	return _demo_action_planner

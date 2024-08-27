@@ -13,3 +13,8 @@ script = ExtResource("1_157kj")
 
 [node name="WeaponMesh" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ner7u")
+
+[node name="NameTag" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.312017, 0)
+billboard = 1
+text = "Weapon"
